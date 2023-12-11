@@ -62,17 +62,17 @@ def main(msg):
         ip_code = uid()
         data["ip{}".format(ip_code)] = ip
 
-        app.reply(msg, f"ip code : {ip_code}")
+        app.reply_to(msg, f"ip code : {ip_code}")
 
     if text.startswith("/set_port"):
         port = int(text.replace("/set_port ", ""))
         port_code = uid()
         data["port{}".format(port_code)] = port
 
-        app.reply(msg, f"port code: {port_code}")
+        app.reply_to(msg, f"port code: {port_code}")
 
     if text.startswith("start"):
-        app.reply(msg, "get data ...")
+        app.reply_to(msg, "get data ...")
         more = text.replace("start ", "")
 
         ipportCode = [str(z) for z in more.split(":")]
@@ -98,9 +98,9 @@ def main(msg):
                     global portMain
                     portMain = p
 
-        app.reply(msg, "process ...")
+        app.reply_to(msg, "process ...")
         res = start(ipMain, portMain, 1000)
-        app.reply(msg, "sended => {}".format(res))
+        app.reply_to(msg, "sended => {}".format(res))
 
   #  if text.startswith("/stop"):
  #       codeToStop = text.replace("/stop ", "")
