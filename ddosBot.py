@@ -78,7 +78,10 @@ def main(msg):
         ipportCode = [str(z) for z in more.split(":")]
 
         ipcode = ipportCode[1]
-        portcode = ipportCode[3]
+        portcode = ipportCode[-1]
+
+        app.reply_to(msg, ipcode)
+        app.reply_to(msg, portcode)
 
         for i, p in data.items():
 
