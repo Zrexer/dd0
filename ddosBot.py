@@ -44,7 +44,7 @@ def start(ip, port, for_):
         return num
 
 
-app = telebot.TeleBot(str("Enter Token > "))
+app = telebot.TeleBot(str(input("Enter Token > ")))
 
 data : dict = {}
 
