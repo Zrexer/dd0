@@ -42,7 +42,8 @@ def start(ip, port, for_):
 
     finally:
         return num
-
+portMain = None
+ipMain = None
 
 app = telebot.TeleBot(str(input("Enter Token > ")))
 
@@ -89,7 +90,7 @@ def main(msg):
                 code = i.replace("ip", "")
                 
                 if code == ipcode:
-                    global ipMain
+                  #  global ipMain
                     ipMain = p
 
                 else:
@@ -98,7 +99,7 @@ def main(msg):
                 codeport = i.replace("port", "")
 
                 if codeport == portcode:
-                    global portMain
+                   # global portMain
                     portMain = p
 
         app.reply_to(msg, "process ...")
