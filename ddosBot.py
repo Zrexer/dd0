@@ -42,7 +42,7 @@ def start(ip, port, for_):
 
     finally:
         return num
-portMain = None
+portMain = 80
 ipMain = None
 
 app = telebot.TeleBot(str(input("Enter Token > ")))
@@ -100,9 +100,10 @@ def main(msg):
 
                 if codeport == portcode:
                    # global portMain
-                    portMain = p
+                    portMain = int(p)
+                else:pass
 
-        app.reply_to(msg, "process ...")
+        app.reply_to(msg, "process with {}:{} ... ".format(ipMain, portMain))
         res = start(ipMain, portMain, 1000)
         app.reply_to(msg, "sended => {}".format(res))
 
