@@ -42,14 +42,18 @@ def start(ip, port, for_):
 
     finally:
         return num
-portMain = 80
-ipMain = None
+
+
 
 app = telebot.TeleBot(str(input("Enter Token > ")))
 
 data : dict = {}
 
+ipx_main = []
+portx_main = []
+
 @app.message_handler(content_types=["text"], chat_types=["private"])
+
 
 
 def main(msg):
@@ -91,7 +95,7 @@ def main(msg):
                 
                 if code == ipcode:
                   #  global ipMain
-                    ipMain = p
+                    ipx_main.append(p)
 
                 else:
                     pass 
@@ -100,11 +104,11 @@ def main(msg):
 
                 if codeport == portcode:
                    # global portMain
-                    portMain = int(p)
+                    portMain = portx_main.append(int(p))
                 else:pass
 
-        app.reply_to(msg, "process with {}:{} ... ".format(ipMain, portMain))
-        res = start(ipMain, portMain, 1000)
+        app.reply_to(msg, "process with {}:{} ... ".format(ipx_main[-1], portx_main[-1]))
+        res = start(ipx_main[-1], portx_main[-1], 1000)
         app.reply_to(msg, "sended => {}".format(res))
 
   #  if text.startswith("/stop"):
@@ -119,7 +123,5 @@ def main(msg):
 
 
 
-    
+
 app.infinity_polling()
-
-
