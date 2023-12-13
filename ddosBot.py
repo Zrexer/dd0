@@ -96,15 +96,17 @@ def main(msg):
                 if code == ipcode:
                   #  global ipMain
                     ipx_main.append(p)
+                    print(ipx_main)
 
                 else:
                     pass 
-            if i.startswith("port"):
+            elif i.startswith("port"):
                 codeport = i.replace("port", "")
 
                 if codeport == portcode:
                    # global portMain
-                    portMain = portx_main.append(int(p))
+                    portx_main.append(int(p))
+                    print(portx_main)
                 else:pass
 
         app.reply_to(msg, "process with {}:{} ... ".format(ipx_main[-1], portx_main[-1]))
